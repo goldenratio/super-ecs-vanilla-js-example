@@ -22,7 +22,7 @@ export class SceneSystem extends superECS.System {
 			.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent]))
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
-					COMPONENT_NAMES.SpriteComponent
+					COMPONENT_NAMES.SpriteComponent,
 				);
 				if (!spriteComponent) {
 					return;
@@ -38,7 +38,7 @@ export class SceneSystem extends superECS.System {
 			.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
-					COMPONENT_NAMES.SpriteComponent
+					COMPONENT_NAMES.SpriteComponent,
 				);
 				if (!spriteComponent) {
 					return;

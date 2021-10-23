@@ -13,10 +13,10 @@ export class PositionSystem extends superECS.System {
 
 		entities.forEach(entity => {
 			const positionComponent = entity.getComponent(
-				COMPONENT_NAMES.PositionComponent
+				COMPONENT_NAMES.PositionComponent,
 			);
 			const spriteComponent = entity.getComponent(
-				COMPONENT_NAMES.SpriteComponent
+				COMPONENT_NAMES.SpriteComponent,
 			);
 
 			if (positionComponent && spriteComponent) {

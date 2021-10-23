@@ -20,11 +20,11 @@ export class RandomMovementSystem extends superECS.System {
 
 		entities.forEach(entity => {
 			const positionComponent = entity.getComponent(
-				COMPONENT_NAMES.PositionComponent
+				COMPONENT_NAMES.PositionComponent,
 			);
 			const randomMovementComponent =
 				entity.getComponent(
-					COMPONENT_NAMES.RandomMovementComponent
+					COMPONENT_NAMES.RandomMovementComponent,
 				);
 
 			if (positionComponent && randomMovementComponent) {
