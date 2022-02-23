@@ -16,10 +16,7 @@ export class SceneSystem extends superECS.System {
 	addedToWorld(world) {
 		super.addedToWorld(world);
 
-		this._disposeBag = new superECS.DisposeBag();
-
-		this._disposeBag
-			.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent]))
+		world.entityAdded$([COMPONENT_NAMES.SpriteComponent])
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
 					COMPONENT_NAMES.SpriteComponent,
@@ -34,8 +31,7 @@ export class SceneSystem extends superECS.System {
 				}
 			});
 
-		this._disposeBag
-			.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
+		world.entityRemoved$([COMPONENT_NAMES.SpriteComponent])
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
 					COMPONENT_NAMES.SpriteComponent,

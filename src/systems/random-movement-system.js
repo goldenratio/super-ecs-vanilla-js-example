@@ -8,7 +8,7 @@ export class RandomMovementSystem extends superECS.System {
 		this._stageHeight = props.height;
 	}
 
-	update(delta) {
+	update(tickerData) {
 		const entities = this.world.getEntities([
 			COMPONENT_NAMES.PositionComponent,
 			COMPONENT_NAMES.RandomMovementComponent,
@@ -18,6 +18,7 @@ export class RandomMovementSystem extends superECS.System {
 			return;
 		}
 
+		const { deltaTime } = tickerData;
 		entities.forEach(entity => {
 			const positionComponent = entity.getComponent(
 				COMPONENT_NAMES.PositionComponent,
@@ -29,8 +30,8 @@ export class RandomMovementSystem extends superECS.System {
 
 			if (positionComponent && randomMovementComponent) {
 				const { speed, direction } = randomMovementComponent;
-				positionComponent.x += speed * direction * delta;
-				positionComponent.y += speed * direction * delta;
+				positionComponent.x += speed * direction * deltaTime;
+				positionComponent.y += speed * direction * deltaTime;
 
 				const stageWidth = this._stageWidth;
 				const stageHeight = this._stageHeight;

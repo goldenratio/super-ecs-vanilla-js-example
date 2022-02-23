@@ -2,7 +2,7 @@ import { COMPONENT_NAMES } from '../components/types.js';
 
 export class PositionSystem extends superECS.System {
 
-	update(delta) {
+	update(tickerData) {
 		const entities = this.world.getEntities([
 			COMPONENT_NAMES.PositionComponent,
 			COMPONENT_NAMES.SpriteComponent,
