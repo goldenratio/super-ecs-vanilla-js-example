@@ -1,6 +1,6 @@
 import { COMPONENT_NAMES } from '../components/types.js';
 
-export class SceneSystem extends superECS.System {
+export class SpriteSystem extends superECS.System {
 	constructor(container) {
 		super();
 		this._container = container;
@@ -8,9 +8,6 @@ export class SceneSystem extends superECS.System {
 
 	removedFromWorld(world) {
 		super.removedFromWorld(world);
-		if (this._disposeBag) {
-			this._disposeBag.dispose();
-		}
 	}
 
 	addedToWorld(world) {

@@ -2,7 +2,7 @@ import { PositionComponent } from './components/position-component.js';
 import { SpriteComponent } from './components/sprite-component.js';
 import { RandomMovementComponent } from './components/random-movement-component.js';
 import { PositionSystem } from './systems/position-system.js';
-import { SceneSystem } from './systems/scene-system.js';
+import { SpriteSystem } from './systems/sprite-system.js';
 import { RandomMovementSystem } from './systems/random-movement-system.js';
 
 const app = new PIXI.Application({
@@ -27,7 +27,7 @@ function init() {
 
 	// systems
 	world
-		.addSystem(new SceneSystem(container))
+		.addSystem(new SpriteSystem(container))
 		.addSystem(new PositionSystem())
 		.addSystem(new RandomMovementSystem());
 
