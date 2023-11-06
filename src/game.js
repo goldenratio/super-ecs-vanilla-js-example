@@ -17,10 +17,13 @@ document.body.appendChild(app.view);
 const container = new PIXI.Container();
 app.stage.addChild(container);
 
-PIXI.loader
-	.add('p1', './assets/p1_front.png')
-	.add('p2', './assets/p2_front.png')
-	.load(() => init());
+PIXI.Assets.addBundle('assets', {
+  'p1': './assets/p1_front.png',
+  'p2': './assets/p2_front.png'
+});
+
+PIXI.Assets.loadBundle('assets')
+  .then(() => init());
 
 function init() {
 	const world = new superECS.World();
@@ -58,7 +61,7 @@ function createHeroEntity() {
 		.addComponent(new RandomMovementComponent({ direction }))
 		.addComponent(
 			new SpriteComponent({
-				sprite: new PIXI.Sprite(PIXI.Texture.fromFrame(textureName)),
+				sprite: new PIXI.Sprite(PIXI.Texture.from(textureName)),
 			}),
 		);
 
