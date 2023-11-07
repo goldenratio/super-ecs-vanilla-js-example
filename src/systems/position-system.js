@@ -1,6 +1,8 @@
+import { System } from '../deps/super-ecs.js';
+
 import { COMPONENT_NAMES } from '../components/types.js';
 
-export class PositionSystem extends superECS.System {
+export class PositionSystem extends System {
 
 	update(tickerData) {
 		const entities = this.world.getEntities([

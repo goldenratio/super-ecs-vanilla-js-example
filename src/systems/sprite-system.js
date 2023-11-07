@@ -1,6 +1,8 @@
+import { System } from '../deps/super-ecs.js';
+
 import { COMPONENT_NAMES } from '../components/types.js';
 
-export class SpriteSystem extends superECS.System {
+export class SpriteSystem extends System {
 	constructor(container) {
 		super();
 		this._container = container;

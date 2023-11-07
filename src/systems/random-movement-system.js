@@ -1,6 +1,8 @@
+import { System } from '../deps/super-ecs.js';
+
 import { COMPONENT_NAMES } from '../components/types.js';
 
-export class RandomMovementSystem extends superECS.System {
+export class RandomMovementSystem extends System {
 
 	constructor(props = { width: 600, height: 400 }) {
 		super();
