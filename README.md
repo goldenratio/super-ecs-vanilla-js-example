@@ -1,8 +1,13 @@
 # super-ecs-vanilla-js-example
 super-ecs vanilla JS example
 
-### How to run example
+### Demo
 
-> npm i -g http-server
-> 
-> http-server ./src
+https://goldenratio.github.io/super-ecs-vanilla-js-example/src/ 
+
+### How to Run Example
+
+```sh
+npm i -g http-server
+http-server ./src
+```
