@@ -3,6 +3,15 @@ import { System } from '../deps/super-ecs.js';
 import { COMPONENT_NAMES } from '../components/types.js';
 import { DisposeBag } from "../utils/dispose-bag.js";
 
+/**
+ * @typedef {import('../deps/pixi.js').Container} Container
+ */
+
+/**
+ * @typedef {import('../deps/super-ecs.js').World} World
+ */
+
+
 export class SpriteSystem extends System {
 
   /**
@@ -11,11 +20,17 @@ export class SpriteSystem extends System {
    */
   _disposeBag = undefined;
 
+  /**
+   * @param { Container } container
+   */
 	constructor(container) {
 		super();
 		this._container = container;
 	}
 
+  /**
+   * @param { World } world
+   */
 	removedFromWorld(world) {
 		super.removedFromWorld(world);
     if (this._disposeBag) {
@@ -24,6 +39,9 @@ export class SpriteSystem extends System {
     }
 	}
 
+  /**
+   * @param { World } world
+   */
 	addedToWorld(world) {
 		super.addedToWorld(world);
 
