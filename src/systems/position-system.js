@@ -14,9 +14,12 @@ export class PositionSystem extends System {
 		}
 
 		entities.forEach(entity => {
+      /** @type { PositionComponent } **/
 			const positionComponent = entity.getComponent(
 				COMPONENT_NAMES.PositionComponent,
 			);
+
+      /** @type { SpriteComponent } **/
 			const spriteComponent = entity.getComponent(
 				COMPONENT_NAMES.SpriteComponent,
 			);

@@ -22,9 +22,13 @@ export class RandomMovementSystem extends System {
 
 		const { deltaTime } = tickerData;
 		entities.forEach(entity => {
+
+      /** @type { PositionComponent } **/
 			const positionComponent = entity.getComponent(
 				COMPONENT_NAMES.PositionComponent,
 			);
+
+      /** @type { RandomMovementComponent } **/
 			const randomMovementComponent =
 				entity.getComponent(
 					COMPONENT_NAMES.RandomMovementComponent,
