@@ -1,4 +1,4 @@
-import { Subject, takeUntil } from '../deps/rx.js';
+import { Observable, Subject, takeUntil } from '../deps/rx.js';
 
 /**
  * Interface representing a disposable resource.
@@ -14,8 +14,22 @@ import { Subject, takeUntil } from '../deps/rx.js';
 
 
 export class DisposeBag {
+  /**
+   * @type {Subject<void>}
+   * @private
+   */
   _dispose$ = new Subject();
+
+  /**
+   * @type {Set<Disposable | DisposeCallback>}
+   * @private
+   */
   _list = new Set();
+
+  /**
+   * @type {boolean}
+   * @private
+   */
   _isDisposed = false;
 
   /**
@@ -35,6 +49,8 @@ export class DisposeBag {
   }
 
   /**
+   * @function
+   * @template T
    * @param {Observable<T>} item$
    * @returns {Observable<T>}
    */
