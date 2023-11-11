@@ -1,8 +1,16 @@
 import { System } from '../deps/super-ecs.js';
 
 import { COMPONENT_NAMES } from '../components/types.js';
+import { DisposeBag } from "../utils/dispose-bag.js";
 
 export class SpriteSystem extends System {
+
+  /**
+   * @type { DisposeBag | undefined }
+   * @private
+   */
+  _disposeBag = undefined;
+
 	constructor(container) {
 		super();
 		this._container = container;
@@ -10,12 +18,18 @@ export class SpriteSystem extends System {
 
 	removedFromWorld(world) {
 		super.removedFromWorld(world);
+    if (this._disposeBag) {
+      this._disposeBag.dispose();
+      this._disposeBag = undefined;
+    }
 	}
 
 	addedToWorld(world) {
 		super.addedToWorld(world);
 
-		world.entityAdded$([COMPONENT_NAMES.SpriteComponent])
+    this._disposeBag = new DisposeBag();
+
+		this._disposeBag.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent]))
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
 					COMPONENT_NAMES.SpriteComponent,
@@ -30,7 +44,7 @@ export class SpriteSystem extends System {
 				}
 			});
 
-		world.entityRemoved$([COMPONENT_NAMES.SpriteComponent])
+    this._disposeBag.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
 					COMPONENT_NAMES.SpriteComponent,
