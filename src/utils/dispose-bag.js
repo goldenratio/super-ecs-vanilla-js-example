@@ -1,4 +1,4 @@
-import { Observable, Subject, takeUntil } from '../deps/rx.js';
+import { Subject, takeUntil } from '../deps/rx.js';
 
 /**
  * Interface representing a disposable resource.
@@ -12,6 +12,10 @@ import { Observable, Subject, takeUntil } from '../deps/rx.js';
  * @returns {void}
  */
 
+/**
+ * @template T
+ * @typedef {import('../deps/rx.js').Observable<T>} Observable
+ */
 
 export class DisposeBag {
   /**
@@ -34,6 +38,7 @@ export class DisposeBag {
 
   /**
    * @param { Disposable | DisposeCallback } item
+   * @throws Will throw an error if the DisposeBag is already disposed.
    */
   add(item) {
     if (this._isDisposed) {
@@ -49,10 +54,10 @@ export class DisposeBag {
   }
 
   /**
-   * @function
    * @template T
    * @param {Observable<T>} item$
    * @returns {Observable<T>}
+   * @throws Will throw an error if the DisposeBag is already disposed.
    */
   completable$(item$) {
     if (this._isDisposed) {
