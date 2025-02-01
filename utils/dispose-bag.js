@@ -1,4 +1,4 @@
-import { Subject, takeUntil } from '../deps/rx.js';
+import { Subject, takeUntil } from 'rxjs';
 
 /**
  * Interface representing a disposable resource.
@@ -14,7 +14,7 @@ import { Subject, takeUntil } from '../deps/rx.js';
 
 /**
  * @template T
- * @typedef {import('../deps/rx.js').Observable<T>} Observable
+ * @typedef {import('rxjs').Observable<T>} Observable
  */
 
 export class DisposeBag {

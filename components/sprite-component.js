@@ -1,5 +1,5 @@
 import { COMPONENT_NAMES } from './types.js';
-import { Sprite } from '../deps/pixi.js';
+import { Sprite } from 'pixi.js';
 
 export class SpriteComponent {
 	/**

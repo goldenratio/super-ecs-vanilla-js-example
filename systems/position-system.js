@@ -1,4 +1,4 @@
-import { System } from '../deps/super-ecs.js';
+import { System } from 'super-ecs';
 
 import { COMPONENT_NAMES } from '../components/types.js';
 
@@ -14,12 +14,12 @@ export class PositionSystem extends System {
 		}
 
 		entities.forEach(entity => {
-      /** @type { PositionComponent } **/
+			/** @type { PositionComponent } **/
 			const positionComponent = entity.getComponent(
 				COMPONENT_NAMES.PositionComponent,
 			);
 
-      /** @type { SpriteComponent } **/
+			/** @type { SpriteComponent } **/
 			const spriteComponent = entity.getComponent(
 				COMPONENT_NAMES.SpriteComponent,
 			);
