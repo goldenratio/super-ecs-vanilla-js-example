@@ -1,51 +1,51 @@
-import { System } from '../deps/super-ecs.js';
+import { System } from 'super-ecs';
 
 import { COMPONENT_NAMES } from '../components/types.js';
 import { DisposeBag } from "../utils/dispose-bag.js";
 
 /**
- * @typedef {import('../deps/pixi.js').Container} Container
+ * @typedef {import('pixi.js').Container} Container
  */
 
 /**
- * @typedef {import('../deps/super-ecs.js').World} World
+ * @typedef {import('super-ecs').World} World
  */
 
 
 export class SpriteSystem extends System {
 
-  /**
-   * @type { DisposeBag | undefined }
-   * @private
-   */
-  _disposeBag = undefined;
+	/**
+	 * @type { DisposeBag | undefined }
+	 * @private
+	 */
+	_disposeBag = undefined;
 
-  /**
-   * @param { Container } container
-   */
+	/**
+	 * @param { Container } container
+	 */
 	constructor(container) {
 		super();
 		this._container = container;
 	}
 
-  /**
-   * @param { World } world
-   */
+	/**
+	 * @param { World } world
+	 */
 	removedFromWorld(world) {
 		super.removedFromWorld(world);
-    if (this._disposeBag) {
-      this._disposeBag.dispose();
-      this._disposeBag = undefined;
-    }
+		if (this._disposeBag) {
+			this._disposeBag.dispose();
+			this._disposeBag = undefined;
+		}
 	}
 
-  /**
-   * @param { World } world
-   */
+	/**
+	 * @param { World } world
+	 */
 	addedToWorld(world) {
 		super.addedToWorld(world);
 
-    this._disposeBag = new DisposeBag();
+		this._disposeBag = new DisposeBag();
 
 		this._disposeBag.completable$(world.entityAdded$([COMPONENT_NAMES.SpriteComponent]))
 			.subscribe(entity => {
@@ -62,7 +62,7 @@ export class SpriteSystem extends System {
 				}
 			});
 
-    this._disposeBag.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
+		this._disposeBag.completable$(world.entityRemoved$([COMPONENT_NAMES.SpriteComponent]))
 			.subscribe(entity => {
 				const spriteComponent = entity.getComponent(
 					COMPONENT_NAMES.SpriteComponent,

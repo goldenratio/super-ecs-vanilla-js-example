@@ -1,5 +1,5 @@
-import { World, Entity } from './deps/super-ecs.js';
-import { Application, Container, Assets, Sprite, Texture } from './deps/pixi.js';
+import { World, Entity } from 'super-ecs';
+import { Application, Container, Assets, Sprite, Texture } from 'pixi.js';
 
 import { PositionComponent } from './components/position-component.js';
 import { SpriteComponent } from './components/sprite-component.js';
@@ -14,7 +14,7 @@ const app = new Application({
 	backgroundColor: 0x1099bb,
 	resolution: window.devicePixelRatio || 1,
 	sharedTicker: true,
-  hello: true
+	hello: true
 });
 
 document.body.appendChild(app.view);
@@ -22,12 +22,12 @@ const container = new Container();
 app.stage.addChild(container);
 
 Assets.addBundle('assets', {
-  'p1': './assets/p1_front.png',
-  'p2': './assets/p2_front.png'
+	'p1': './assets/p1_front.png',
+	'p2': './assets/p2_front.png'
 });
 
 Assets.loadBundle('assets')
-  .then(() => init());
+	.then(() => init());
 
 function init() {
 	const world = new World();
@@ -46,11 +46,11 @@ function init() {
 
 	// game loop
 	app.ticker.add(deltaTime => world.update({
-    deltaTime,
-    // todo: find out below values
-    elapsedMS: 0,
-    lastTime: 0,
-  }));
+		deltaTime,
+		// todo: find out below values
+		elapsedMS: 0,
+		lastTime: 0,
+	}));
 }
 
 function createHeroEntity() {

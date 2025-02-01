@@ -1,4 +1,4 @@
-import { System } from '../deps/super-ecs.js';
+import { System } from 'super-ecs';
 
 import { COMPONENT_NAMES } from '../components/types.js';
 
@@ -23,12 +23,12 @@ export class RandomMovementSystem extends System {
 		const { deltaTime } = tickerData;
 		entities.forEach(entity => {
 
-      /** @type { PositionComponent } **/
+			/** @type { PositionComponent } **/
 			const positionComponent = entity.getComponent(
 				COMPONENT_NAMES.PositionComponent,
 			);
 
-      /** @type { RandomMovementComponent } **/
+			/** @type { RandomMovementComponent } **/
 			const randomMovementComponent =
 				entity.getComponent(
 					COMPONENT_NAMES.RandomMovementComponent,
